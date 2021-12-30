@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="css/bootstrap.css" >
+<link rel="stylesheet" href="css/layout.css" >
+<script src="js/vue.js"></script>
+<script src="js/urunler.js"></script>
+<body>
+<div id="app">
+
+<div class="totalPrice" >
+  {{toplam}}
+  <div class="clearAllButton" v-on:click="clearAll()">🗑</div>
+</div>
+
+<div class="productList" >
+   <div v-for="item in siparis"  class="listItem">
+      <div class="itemName">{{item.title}}</div>
+      <div class="itemCount">{{item.count}}</div>
+      <div class="itemTotalPrice">{{item.totalPrice}}</div>
+      <div class="itemDelete">
+       <button class="btn btn-primary editbuttons" v-on:click="decraseItem(item.id)">-</button>
+       <button class="btn btn-danger editbuttons" v-on:click="RemoveItem(item.id)">x</button>
+      </div>
+   </div>
+</div>
+
+<div class="products" >
+  <div class="products_drinks" >
+     <button class="btn btn-primary product-button" v-on:click="Add(1)">SU 0.5</button>
+     <button class="btn btn-primary product-button" v-on:click="Add(2)">SU 0.5 Koli</button>
+     <button class="btn btn-warning product-button" v-on:click="Add(3)" >Kutu İçecek</button>
+     <button class="btn btn-danger product-button" v-on:click="Add(4)" >Çay</button>
+     <button class="btn btn-danger product-button" v-on:click="Add(5)" >Nescafe</button>
+     <button class="btn btn-primary product-button" v-on:click="Add(6)">SU 1.5</button>
+     <button class="btn btn-primary product-button" v-on:click="Add(7)">SU 1.5 Koli</button>
+     <button class="btn btn-success product-button" v-on:click="Add(28)" >Soda Sade</button>
+     <button class="btn btn-success product-button" v-on:click="Add(29)" >Soda Sade Paket</button>
+     <button class="btn btn-warning product-button" v-on:click="Add(30)" >Soda C Vit.</button>
+     <button class="btn btn-warning product-button" v-on:click="Add(31)" >Soda C Vit. Paket</button>
+  </div>
+  
+  <div class="products_bisquit" >
+  <button class="btn btn-warning product-button" v-on:click="Add(8)" >Cips</button>
+  <button class="btn btn-danger product-button" v-on:click="Add(9)" >Biskrem</button>
+  <button class="btn btn-primary product-button" v-on:click="Add(10)" >Canpare</button>
+     <button class="btn btn-success product-button" v-on:click="Add(11)" >Çizi</button>
+     <button class="btn btn-warning product-button" v-on:click="Add(12)" >Çiziviç</button>
+     <button class="btn btn-warning product-button" v-on:click="Add(13)" >İkram</button>
+     <button class="btn btn-warning product-button" v-on:click="Add(14)" >Probis</button>
+  </div>
+  
+  <div class="products_icecream" >
+      <button class="btn btn-primary product-button" v-on:click="Add(15)" >Cornetto</button>
+      <button class="btn btn-warning product-button" v-on:click="Add(16)" >Magnum Beyaz/Badem</button>
+      <button class="btn btn-danger product-button" v-on:click="Add(17)" >Magnum Cookie/Antep</button>
+      <button class="btn btn-success product-button" v-on:click="Add(18)" >Magnum Mini</button>
+      <button class="btn btn-secondary product-button" v-on:click="Add(19)" >Frigola</button>
+      <button class="btn btn-secondary product-button" v-on:click="Add(20)" >Nogger</button>
+      <button class="btn btn-secondary product-button" v-on:click="Add(21)" >Algida Cls</button>
+  </div>
+  
+  <div class="products_others" >
+    <button class="btn btn-warning product-button" v-on:click="Add(22)" >Sigara</button>
+    <button class="btn btn-danger product-button" v-on:click="Add(23)" >Sigara Karton</button>
+    <button class="btn btn-primary product-button" v-on:click="Add(24)" >90dk Kart</button>
+     <button class="btn btn-success product-button" v-on:click="Add(25)" >Badem</button>
+     <button class="btn btn-warning product-button" v-on:click="Add(26)" >Kaju</button>
+     <button class="btn btn-danger product-button" v-on:click="Add(27)" >Fındık</button>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+
+<script>
+var myObject = new Vue({
+  el: '#app',
+  data: {
+  				message: 'Hello Vue!',
+  				siparis:[],
+  				toplam:0.00
+  				},
+  	watch:{
+  					siparis:{
+  									deep:true,
+  									handler(){
+  													this.Sum();
+  													}
+  									
+  									}
+  					},
+  methods:{
+  		
+  		clearAll:function(){
+  				this.siparis=[];								
+  		},
+  		
+  		decraseItem:function(itemId){
+  						 					for(var i=0;i<this.siparis.length;i++){
+  									if(this.siparis[i].id==itemId){
+  	this.siparis[i].count-=1;
+  	this.siparis[i].totalPrice=(this.siparis[i].price*this.siparis[i].count).toFixed(2);
+  	
+  	if(this.siparis[i].count<=0)
+  	{
+  					this.siparis.splice(i,1);
+  	}
+  													break;
+  													}
+  				 }
+  						
+  		},
+  		
+  		RemoveItem:function(itemId){
+  					for(var i=0;i<this.siparis.length;i++){
+  									if(this.siparis[i].id==itemId){
+  													    this.siparis.splice(i,1);
+  													break;
+  													}
+  				 }
+  		}	,	
+  				
+  	 Add:function(itemId){
+  	 				 var urunkontrol =this.siparis.find(item=>item.id==itemId);
+  	 				 if(urunkontrol === undefined || urunkontrol===null){
+  	 				 				  var urun = urunListesi.find(item=>item.id==itemId)
+   	urun.count=1;
+   	urun.totalPrice=urun.price;
+  	 this.siparis.push(urun)
+  	 				 				}
+  	 				 				else{
+  	 				 							 urunkontrol.count+=1;
+  	 				 							 urunkontrol.totalPrice=urunkontrol.price*urunkontrol.count;
+
+urunkontrol.totalPrice=urunkontrol.totalPrice.toFixed(2);
+  	 				 								}
+  	 				 								
+  	 				 								
+  	 	},
+  	 	Sum:function(){
+  	 					
+  	 					this.toplam=0;
+  	 					for(var i=0; i<this.siparis.length;i++){
+  	 									this.toplam+=this.siparis[i].price * this.siparis[i].count;
+  	 									}
+ this.toplam=this.toplam.toFixed(2);
+  	 					
+  	 					 	 	}
+  }
+})
+
+
+</script>
+
+
+
+</body>
+</html>

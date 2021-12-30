@@ -1,0 +1,121 @@
+ .totalPrice{
+ 				position:absolute;
+ 				width:100%;
+ 				height:50px;
+ 				background-color:red;
+ 				text-align:center;
+ 				color:white;
+ 				font-size:30px;
+ 	}
+ 	
+ 	.productList{
+ 				position:absolute;
+ 				width:100%;
+ 				height:280px;
+ 				top:50px;
+ 				overflow-y:scroll;
+ 	}
+
+.listItem{
+				 width:100%;
+				 height:25px;
+				 background-color:lightgray;
+				 margin-top:2px;
+				 display:inline-flex;
+				}
+
+.itemName{
+				 font-size:16px;
+				 width:150px;
+				 height:100%;
+				 overflow-x:hidden;
+				}
+
+.itemCount{
+				  width:50px;
+				  height:100%;
+				  color:red;
+				  text-align:center;
+				}
+				
+				.itemTotalPrice{
+				  width:80px;
+				  height:100%;
+				  text-align:center;
+				}
+				
+				.itemDelete{
+				  width:130px;
+				  height:100%;
+				  font-size:16px;
+				}
+				
+				.product-button{
+								width:100%;
+								height:40px;
+								margin-top:5px;
+								font-size:10px;
+								}
+				
+				.products{
+								position:absolute;
+								top:330px;
+								height:calc(100% - 330px);
+								width:100%;
+								}
+								
+.products_drinks{
+				position:absolute;
+				width:80px;
+				top:0px;
+				left:0px;
+				height:100%;
+				overflow-y:scroll;
+				background-color:lightgray;
+				}
+				
+				.products_bisquit{
+				position:absolute;
+				width:80px;
+				top:0px;
+				left:90px;
+				height:100%;
+				overflow-y:scroll;
+				background-color:lightgray;
+				}
+				
+					.products_icecream{
+				position:absolute;
+				width:80px;
+				top:0px;
+				left:180px;
+				height:100%;
+				overflow-y:scroll;
+				background-color:lightgray;
+				}
+				
+						.products_others{
+				position:absolute;
+				width:80px;
+				top:0px;
+				left:270px;
+				height:100%;
+				overflow-y:scroll;
+				background-color:lightgray;
+				}
+				
+.clearAllButton{
+				position:absolute;
+				top:8px;
+				right:20px;
+				font-size:24px;
+				font-weight:bold;
+				color:white;
+				z-index:3;
+				}
+
+.editbuttons{
+				  width:50px;
+				  height:20px;
+				  padding-top:0px;
+				}
